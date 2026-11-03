@@ -1,0 +1,16 @@
+{
+  "name": "mac-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "收口桥骨架：飞书 WS → 飞书助手；Codeup HTTP → 质量监管。可跑在 Linux/macOS 常开主机。",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "feishu": "node feishu/ws-long-connection.mjs",
+    "yunxiao": "node yunxiao/http-ingress.mjs",
+    "smoke": "bash scripts/smoke-test.sh"
+  },
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.40.0"
+  }
+}

@@ -1,0 +1,17 @@
+[Unit]
+Description=mac-bridge Codeup HTTP ingress (bridge host)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=__BRIDGE_ROOT__
+Environment=MAC_BRIDGE_CONFIG=%h/.config/mac-bridge/config.json
+ExecStart=__NODE_BIN__ __BRIDGE_ROOT__/yunxiao/http-ingress.mjs
+Restart=always
+RestartSec=3
+StandardOutput=append:%h/.config/mac-bridge/logs/yunxiao.out.log
+StandardError=append:%h/.config/mac-bridge/logs/yunxiao.err.log
+
+[Install]
+WantedBy=default.target

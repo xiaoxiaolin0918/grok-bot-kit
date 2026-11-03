@@ -1,0 +1,17 @@
+[Unit]
+Description=mac-bridge Feishu WS (bridge host)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=__BRIDGE_ROOT__
+Environment=MAC_BRIDGE_CONFIG=%h/.config/mac-bridge/config.json
+ExecStart=__NODE_BIN__ __BRIDGE_ROOT__/feishu/ws-long-connection.mjs
+Restart=always
+RestartSec=3
+StandardOutput=append:%h/.config/mac-bridge/logs/feishu.out.log
+StandardError=append:%h/.config/mac-bridge/logs/feishu.err.log
+
+[Install]
+WantedBy=default.target

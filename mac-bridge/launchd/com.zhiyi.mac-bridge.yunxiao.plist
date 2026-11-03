@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.zhiyi.mac-bridge.yunxiao</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>__NODE_BIN__</string>
+    <string>__BRIDGE_ROOT__/yunxiao/http-ingress.mjs</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>__BRIDGE_ROOT__</string>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>__HOME__/.config/mac-bridge/logs/yunxiao.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>__HOME__/.config/mac-bridge/logs/yunxiao.err.log</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>__PATH_EXTRA__/usr/local/bin:/usr/bin:/bin</string>
+    <key>MAC_BRIDGE_CONFIG</key>
+    <string>__HOME__/.config/mac-bridge/config.json</string>
+  </dict>
+</dict>
+</plist>

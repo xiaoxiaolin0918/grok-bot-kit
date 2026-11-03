@@ -1,0 +1,16 @@
+[Unit]
+Description=mac-bridge frpc tunnel (optional)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.config/mac-bridge
+ExecStart=__FRPC_BIN__ -c %h/.config/mac-bridge/frpc.toml
+Restart=always
+RestartSec=5
+StandardOutput=append:%h/.config/mac-bridge/logs/frpc.out.log
+StandardError=append:%h/.config/mac-bridge/logs/frpc.err.log
+
+[Install]
+WantedBy=default.target

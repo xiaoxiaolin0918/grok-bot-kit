@@ -1,0 +1,16 @@
+# 复制到 ~/.config/mac-bridge/frpc.toml 后填写服务端参数。
+# 真实 token / 域名勿提交仓库。
+
+serverAddr = "YOUR_FRPS_HOST"
+serverPort = 7000
+
+auth.method = "token"
+auth.token = "YOUR_FRPS_TOKEN"
+
+[[proxies]]
+name = "mac-bridge-yunxiao-http"
+type = "http"
+localIP = "127.0.0.1"
+localPort = 8787
+subdomain = "mac-bridge"
+# customDomains = ["bridge.example.com"]

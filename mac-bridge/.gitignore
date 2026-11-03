@@ -1,0 +1,17 @@
+config.json
+config.local.json
+.env
+.env.*
+*.secret
+*secret*
+*token*
+webhook*
+data/
+logs/
+*.log
+node_modules/
+.DS_Store
+frpc.toml
+frps.toml
+*.toml.local
+frp/frpc.toml

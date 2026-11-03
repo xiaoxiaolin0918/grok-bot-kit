@@ -1,0 +1,30 @@
+{
+  "_comment": "复制为 ~/.config/mac-bridge/config.json。勿提交真实密钥。feishu.steward_webhook 语义=飞书助手唤醒（历史键名）。qa_ingest.script 改成你自己的路径或 disabled。",
+  "feishu": {
+    "app_id": "cli_xxxxxxxx",
+    "app_secret_file": "~/.config/mac-bridge/feishu_app_secret",
+    "bot_open_id_file": "~/.config/mac-bridge/bot_open_id",
+    "inbox_dir": "~/.config/mac-bridge/data",
+    "qa_ingest": {
+      "enabled": false,
+      "script": "/path/to/optional/ingest.py",
+      "db": "~/.config/mac-bridge/data/feishu_qa.sqlite3"
+    },
+    "steward_webhook": {
+      "url_file": "~/.config/mac-bridge/steward_webhook_url",
+      "auth_file": "~/.config/mac-bridge/steward_webhook_auth"
+    },
+    "bot_name_re": "飞书助手|Grok Bot|bot管家",
+    "follow_chat_ids": []
+  },
+  "yunxiao": {
+    "listen_host": "127.0.0.1",
+    "listen_port": 8787,
+    "path": "/yunxiao/codeup",
+    "shared_secret_file": "~/.config/mac-bridge/yunxiao_ingress_secret",
+    "quality_webhook": {
+      "url_file": "~/.config/mac-bridge/quality_webhook_url",
+      "auth_file": "~/.config/mac-bridge/quality_webhook_auth"
+    }
+  }
+}
