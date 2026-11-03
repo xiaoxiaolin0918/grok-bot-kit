@@ -7,7 +7,7 @@
 ## 给谁
 
 - 需要在新账号上搭齐「管家 + 飞书助手 + 质量监管 + 代码审查」（可选 zhiyi-cli）的同事
-- 需要理解「常开主机」上双入口收口桥（飞书 WS / Codeup HTTP）的运维同学
+- 需要理解「常开主机」（Linux / macOS / **Windows**）上双入口收口桥（飞书 WS / Codeup HTTP）的运维同学
 
 ## 本仓有什么
 
@@ -15,7 +15,7 @@
 |------|------|
 | `docs/` | 流程线、架构、引导式初始化、验收清单、安全约定 |
 | `roles/` | 各角色 `AGENT.template.md` / `HANDOFF.template.md`（复制后按占位符填写） |
-| `mac-bridge/` | 可安装的收口桥骨架（目录名沿用历史；**可跑在 Linux 或 macOS 常开主机**；仅 example 配置） |
+| `mac-bridge/` | 可安装的收口桥骨架（目录名沿用历史；**可跑在 Linux / macOS / Windows 常开主机**；仅 example 配置） |
 | `scripts/init-guided.sh` | 打印引导步骤并检查本仓目录是否齐全（不索要密码） |
 
 ## 正式对照角色（本 kit）
@@ -47,8 +47,8 @@
 
 1. **人工只建管家**；其余由管家 `CreateAgent` 拉起并发送开工消息
 2. 巡检例程：每天 **09:06** / **21:06**（Asia/Shanghai，含周末）；缺漏/过旧才催，全齐沉默
-3. **收口桥**跑在一台 **常开主机（bridge host）** 上即可（Linux / macOS 均可），**不要求**必须是某台特定 Mac
-4. **进程守护**：macOS 用 launchd，Linux 用 systemd（二选一）；见 `mac-bridge/README.md`
+3. **收口桥**跑在一台 **常开主机（bridge host）** 上即可（**Linux / macOS / Windows**），**不要求**特定机型或仅 Unix
+4. **进程守护**：Linux→systemd；macOS→launchd；Windows→**NSSM** 或**任务计划程序**；见 `mac-bridge/README.md`
 5. **Codeup**：桥 + 公网可达 + smoke 通过后，再改远端 Webhook；Secret 头为 **`X-Codeup-Token`**（桥同时兼容 `X-Mac-Bridge-Secret` / `X-Gitlab-Token` / `?secret=`）
 6. 换号：通常只改主机上转发文件（飞书助手 / 质量监管的 webhook URL+Authorization），飞书 app 凭证可留主机
 7. 侧栏 agent id、Cursor `machineId` **以当前账号侧栏 / 已连接电脑为准**；模板只用占位。`machineId` **可选**——仅当该角色需要 Cursor 本机 Shell/Read 时再填
@@ -62,4 +62,4 @@
 - 不暴露完整复活仓内容与历史
 - 不提交任何真实 Bearer / app_secret / ingress secret / frp token / 真实 webhook URL
 - 不把本 kit 当业务仓使用
-- 不暗示桥必须跑在 Mac mini 上
+- 不暗示桥必须跑在 Mac mini 上，也不暗示仅支持 Unix

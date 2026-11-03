@@ -48,3 +48,5 @@ X-Codeup-Token: <与 yunxiao_ingress_secret 相同>
 ## 日志
 
 主机 `logs/` 可能含会话摘要。默认 gitignore。对外分享前先脱敏或删除。
+
+Windows 上配置目录仍建议 `%USERPROFILE%\.config\mac-bridge\`（与示例一致），或通过环境变量 `MAC_BRIDGE_CONFIG` 指向任意路径。

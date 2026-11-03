@@ -34,6 +34,9 @@ need=(
   mac-bridge/scripts/smoke-test.sh
   mac-bridge/scripts/install-launchd.sh
   mac-bridge/scripts/install-systemd.sh
+  mac-bridge/scripts/windows/README.md
+  mac-bridge/scripts/windows/install-nssm.ps1
+  mac-bridge/scripts/windows/install-scheduled-tasks.ps1
   mac-bridge/frp/frpc.example.toml
 )
 
@@ -62,11 +65,11 @@ fi
 echo "目录齐全。"
 echo
 echo "下一步（详见 docs/03-guided-setup.md）："
-echo "  0) 选定常开 bridge host（Linux/macOS）与占位符"
+echo "  0) 选定常开 bridge host（Linux/macOS/Windows）与占位符"
 echo "  1) 只建管家（roles/steward）"
 echo "  2) 管家 CreateAgent：飞书助手 → 质量 → 代码审查 →（可选）zhiyi-cli"
 echo "  3) 巡检例程 09:06 / 21:06 Asia/Shanghai"
-echo "  4) 在 bridge host 安装 mac-bridge（launchd 或 systemd）"
+echo "  4) 在 bridge host 安装 mac-bridge（systemd / launchd / NSSM或任务计划）"
 echo "  5) 挂飞书助手 webhook"
 echo "  6) 挂质量 webhook + 公网 smoke（头 X-Codeup-Token）"
 echo "  7) 最后才改 Codeup 远端"

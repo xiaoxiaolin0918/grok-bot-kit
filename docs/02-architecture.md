@@ -4,7 +4,7 @@
 
 ```
                     ┌──────────────────────────────────────┐
-                    │     常开主机 bridge host（Linux/macOS） │
+                    │  常开主机 bridge host（Linux/macOS/Windows） │
                     │                                      │
  飞书开放平台 ─WS──►│  mac-bridge feishu WS                 │──POST──► 飞书助手例程
                     │                                      │
@@ -17,7 +17,7 @@
 ```
 
 **原则**：外网事件先落到 **bridge host**，再转发到**当前账号**的 Grok Bot webhook。换号时优先改两处转发文件，而不是重配飞书应用。  
-**不要求**桥跑在某台特定 Mac；任选一台能常开、能出公网（或经隧道）的主机即可。目录名 `mac-bridge` 为历史命名，语义=收口桥。
+**不要求**特定 Mac，也**不限于 Unix**：任选一台能常开、能出公网（或经隧道）的 **Linux / macOS / Windows** 主机即可。目录名 `mac-bridge` 为历史命名，语义=收口桥。
 
 ## 组件
 
@@ -26,7 +26,7 @@
 | `mac-bridge/feishu` | 飞书 WS；过滤群 @；OnIt；转发飞书助手 |
 | `mac-bridge/yunxiao` | Codeup HTTP 收口；Secret 校验；转发质量监管 |
 | 主机配置目录（默认 `~/.config/mac-bridge/`） | **唯一**密钥与 webhook 落点（勿进 git） |
-| 进程守护 | **macOS → launchd**；**Linux → systemd**（二选一） |
+| 进程守护 | **Linux → systemd**；**macOS → launchd**；**Windows → NSSM 或任务计划程序** |
 | bot管家 | CreateAgent、巡检、桥健康旁视 |
 | 飞书助手 | 答飞书问题、代回 |
 | 质量监管 | CR 调度、Approve/merge 站规 |

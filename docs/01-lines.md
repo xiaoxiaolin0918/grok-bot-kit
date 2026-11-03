@@ -37,13 +37,23 @@
                                    （主机 steward_webhook_* 或 feishu_bot_webhook_*）
 ```
 
-1. 在 **常开主机** 上跑 WS 长连接（launchd 或 systemd KeepAlive / Restart=always）。
+1. 在 **常开主机**（Linux / macOS / Windows）上跑 WS 长连接；进程守护见下表。
 2. **私聊一律唤醒**；**群聊仅真正 @bot**（按 bot open_id / 名称正则），未 @ 不唤醒。
 3. 转发目标是「飞书助手」例程 webhook，**不再经管家代答**（管家只巡检桥是否在线）。
 4. 可选：异步 ingest 到主机 FAQ sqlite（路径自配；本 kit 不捆绑完整 feishu-qa 仓）。
 5. 代回：助手用飞书开放 API / 自备脚本引用回复；长排查可开话题。
 
 **换号**：改主机转发 URL/Authorization 文件即可；`app_id` / `app_secret` 可保留。
+
+### 进程守护（三端）
+
+| 主机 OS | 守护方式 |
+|---------|----------|
+| Linux | systemd（user 或 system unit，`Restart=always`） |
+| macOS | launchd KeepAlive |
+| Windows | **NSSM** 将 `node …` 注册为服务，或**任务计划程序**（登录/启动时运行并失败重启） |
+
+Node 进程本身跨平台：`npm run feishu` / `npm run yunxiao`。公网仍用 frp / cloudflared / ngrok / 反代转到本机 `8787`。
 
 ---
 
@@ -97,6 +107,6 @@ Codeup ──HTTPS(<MAC_BRIDGE_HOST>)──► bridge-host: yunxiao/http-ingress
 | 打印开发 | ❌ 排除 | 可能有 |
 | 真实密钥 / 个人 agent id | ❌ 占位 | 主机/本机私有 |
 | 冗长巡检史 | ❌ | 有 |
-| 收口桥可运行骨架 | ✅ example；Linux/macOS | 同思路 |
+| 收口桥可运行骨架 | ✅ example；Linux/macOS/Windows | 同思路 |
 | 引导式初始化 | ✅ | 可能散落在 HANDOFF |
-| 桥必须 Mac | ❌ 否 | 视部署而定 |
+| 桥必须 Mac / 仅 Unix | ❌ 否 | 视部署而定 |

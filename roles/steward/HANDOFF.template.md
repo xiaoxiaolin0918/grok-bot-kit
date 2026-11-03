@@ -10,7 +10,7 @@
 |----|-----|
 | 用户 | `<USER_NAME>` |
 | 交接根 | `<ROLES_ROOT>` |
-| bridge host | `<BRIDGE_HOST_NOTE>`（常开 Linux/macOS；非必须本机） |
+| bridge host | `<BRIDGE_HOST_NOTE>`（常开 Linux/macOS/Windows；非必须开发本机） |
 | machineId | `<MACHINE_ID>`（可选） |
 | 组织 | `<ORG>` |
 

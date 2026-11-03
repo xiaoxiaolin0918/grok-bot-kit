@@ -13,10 +13,10 @@
 
 ## 收口桥（bridge host）
 
-- [ ] 主机为常开 Linux 或 macOS（不强制特定品牌机型）
+- [ ] 主机为常开 Linux / macOS / Windows（不强制特定机型，非仅 Unix）
 - [ ] `npm install` 完成；`config.example.json` 已复制为本地 config
 - [ ] 密钥文件在 `~/.config/mac-bridge/`（或文档约定目录），权限收紧
-- [ ] 进程守护已选：**launchd** 或 **systemd** 之一，飞书+yunxiao 自动拉起
+- [ ] 进程守护已按 OS 选好：**systemd** / **launchd** / **NSSM 或任务计划程序**，飞书+yunxiao 自动拉起
 - [ ] `GET /healthz` → 200
 - [ ] 飞书私聊可唤醒飞书助手；群未 @ 不唤醒
 - [ ] 本机 smoke POST → 质量例程有记录
@@ -38,4 +38,4 @@
 ## 文档自检
 
 - [ ] 同事仅凭本仓 docs + roles + mac-bridge README 可搭齐飞书+Codeup+巡检+四角色
-- [ ] 文中未要求必须使用 Mac mini
+- [ ] 文中未要求必须使用 Mac mini，且已写明 Windows 可用

@@ -13,7 +13,7 @@
 **怎么做**
 
 1. 准备 Cursor / Grok Bot 账号（将只人工建管家）。
-2. 选定一台 **常开主机**（Linux 或 macOS），下文称 bridge host；记下将对外暴露的 `<MAC_BRIDGE_HOST>`。
+2. 选定一台 **常开主机**（**Linux / macOS / Windows**），下文称 bridge host；记下将对外暴露的 `<MAC_BRIDGE_HOST>`。
 3. 克隆本 kit 到 bridge host（或任意可编辑机，再同步到 bridge host）：
    ```bash
    git clone <本仓 URL> zhiyi-bot-kit
@@ -88,10 +88,11 @@
    cp config.example.json ~/.config/mac-bridge/config.json
    # 编辑 config.json；写入各 *_file 指向的密钥文件（见 05-security）
    ```
-2. **进程守护（二选一）**
-   - macOS：`./scripts/install-launchd.sh`（先按 README 改 plist 内 `BRIDGE_ROOT` / node 路径）
-   - Linux：`./scripts/install-systemd.sh`（user 或 system unit，见同目录）
-3. 前台调试（可选）：`npm run feishu` / `npm run yunxiao`
+2. **进程守护（三选一，按 OS）**
+   - Linux：`./scripts/install-systemd.sh`
+   - macOS：`./scripts/install-launchd.sh`
+   - Windows：见 `mac-bridge/scripts/windows/`（**NSSM** 或 **任务计划程序** PowerShell 示例）；先装 Node ≥18
+3. 前台调试（可选）：`npm run feishu` / `npm run yunxiao`（三端相同）
 
 **验收**
 
