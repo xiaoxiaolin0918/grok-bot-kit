@@ -3,7 +3,7 @@
  * Codeup/云效 HTTP 收口（收口桥 · 云效）
  * - 本机监听 listen_host:listen_port
  * - 校验可选 shared_secret（Header: X-Mac-Bridge-Secret / X-Codeup-Token / X-Gitlab-Token，或 ?secret=）
- * - POST 到质量监管 webhook（本机配置文件）
+ * - POST 到质量调度 webhook（本机配置文件）
  *
  * 默认只绑 127.0.0.1；用 frp / cloudflared / ngrok / 反代暴露公网。
  * 桥落地并自测通后再改 Codeup 远端 Webhook。

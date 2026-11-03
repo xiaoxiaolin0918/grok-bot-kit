@@ -1,9 +1,9 @@
-# 智衣质量监管 · HANDOFF 模板
+# 质量调度 · HANDOFF 模板
 
 ## Webhook
 
 - 例程名建议：`codeup-cr-webhook`（自定）
-- 公网：`https://<MAC_BRIDGE_HOST>/yunxiao/codeup`
+- 公网：`https://<BRIDGE_HOST>/yunxiao/codeup`
 - Secret：与 bridge `yunxiao_ingress_secret` 相同；头 **`X-Codeup-Token`**
 - **先 smoke 再改 Codeup 远端**
 

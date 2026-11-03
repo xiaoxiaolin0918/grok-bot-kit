@@ -1,4 +1,4 @@
-# 飞书助手 · HANDOFF 模板
+# 飞书答疑 · HANDOFF 模板
 
 ## 入口
 
@@ -7,7 +7,7 @@
                 └─POST─► 本 bot 唤醒例程
 ```
 
-主机转发文件（示例名）：`steward_webhook_url` / `steward_webhook_auth`（语义=飞书助手）。
+主机转发文件（示例名）：`steward_webhook_url` / `steward_webhook_auth`（语义=飞书答疑）。
 
 ## 本机/主机线索
 

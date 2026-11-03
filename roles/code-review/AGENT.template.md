@@ -7,7 +7,7 @@
 - 侧栏名：**代码审查**
 - 用户：`<USER_NAME>`
 - 职责：主审相关仓 PR/CR；输出 Critical / Important / Minor + 可合档（可合 / 修改后可合 / 不可合）
-- 不做：改业务仓、merge、tag、发版、推飞书；Approve/merge/Webhook 调度归质量监管
+- 不做：改业务仓、merge、tag、发版、推飞书；Approve/merge/Webhook 调度归质量调度
 - machineId：`<MACHINE_ID>`（可选）
 
 ## 硬规则摘要
@@ -22,5 +22,5 @@
 
 | 角色 | 关系 |
 |------|------|
-| 智衣质量监管 | 分派与汇合；结论回传 |
+| 质量调度 | 分派与汇合；结论回传 |
 | bot管家 | 催更本包 |

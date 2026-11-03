@@ -9,5 +9,5 @@ cp frpc.example.toml ~/.config/mac-bridge/frpc.toml
 # Linux: 由 install-systemd.sh 在非占位时自动 enable frpc unit
 ```
 
-公网示例：`https://<MAC_BRIDGE_HOST>/yunxiao/codeup`  
+公网示例：`https://<BRIDGE_HOST>/yunxiao/codeup`  
 **未 smoke 通前不要改 Codeup 远端。**

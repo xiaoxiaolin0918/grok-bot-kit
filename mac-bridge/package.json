@@ -2,7 +2,7 @@
   "name": "mac-bridge",
   "version": "0.1.0",
   "private": true,
-  "description": "收口桥骨架：飞书 WS → 飞书助手；Codeup HTTP → 质量监管。可跑在 Linux/macOS 常开主机。",
+  "description": "Bridge host skeleton: Feishu WS → assistant webhook; Git forge HTTP → quality webhook. Linux/macOS/Windows.",
   "type": "module",
   "engines": { "node": ">=18" },
   "scripts": {

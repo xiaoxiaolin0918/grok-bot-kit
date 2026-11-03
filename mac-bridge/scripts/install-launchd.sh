@@ -33,7 +33,7 @@ render() {
       "$src" > "$dst"
 }
 
-for name in com.zhiyi.mac-bridge.feishu com.zhiyi.mac-bridge.yunxiao; do
+for name in com.example.grok-bridge.feishu com.example.grok-bridge.yunxiao; do
   src="$BRIDGE/launchd/${name}.plist"
   dst="$LAUNCH_DIR/${name}.plist"
   render "$src" "$dst"
@@ -45,7 +45,7 @@ for name in com.zhiyi.mac-bridge.feishu com.zhiyi.mac-bridge.yunxiao; do
 done
 
 echo "日志: $CFG_DIR/logs/"
-echo "状态: launchctl print gui/${uid}/com.zhiyi.mac-bridge.feishu | head"
+echo "状态: launchctl print gui/${uid}/com.example.grok-bridge.feishu | head"
 if [[ -x "${FRPC_BIN:-$HOME/.local/bin/frpc}" && -f "$CFG_DIR/frpc.toml" ]] && ! grep -qE 'YOUR_FRPS_HOST|YOUR_FRPS_TOKEN' "$CFG_DIR/frpc.toml" 2>/dev/null; then
   "$BRIDGE/scripts/install-frpc-launchd.sh" || true
 else

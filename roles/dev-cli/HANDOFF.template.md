@@ -1,4 +1,4 @@
-# zhiyi cli · HANDOFF 模板
+# dev-cli · HANDOFF 模板
 
 ## 环境
 

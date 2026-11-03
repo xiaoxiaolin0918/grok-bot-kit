@@ -5,8 +5,8 @@
 ## 角色与例程
 
 - [ ] 侧栏仅人工创建了 **bot管家**；其余由管家 CreateAgent
-- [ ] 飞书助手 / 智衣质量监管 / 代码审查 均已开工读包
-- [ ] （可选）zhiyi cli 已开工
+- [ ] 飞书答疑 / 质量调度 / 代码审查 均已开工读包
+- [ ] （可选）dev-cli 已开工
 - [ ] **无**打印开发机器人被写入本对照表
 - [ ] 巡检例程 09:06 / 21:06 Asia/Shanghai 已建
 - [ ] 临时评审 / 群聊默认不在对照表
@@ -18,15 +18,15 @@
 - [ ] 密钥文件在 `~/.config/mac-bridge/`（或文档约定目录），权限收紧
 - [ ] 进程守护已按 OS 选好：**systemd** / **launchd** / **NSSM 或任务计划程序**，飞书+yunxiao 自动拉起
 - [ ] `GET /healthz` → 200
-- [ ] 飞书私聊可唤醒飞书助手；群未 @ 不唤醒
+- [ ] 飞书私聊可唤醒飞书答疑；群未 @ 不唤醒
 - [ ] 本机 smoke POST → 质量例程有记录
 
 ## Codeup
 
-- [ ] 公网 `https://<MAC_BRIDGE_HOST>/yunxiao/codeup` 烟测 200
+- [ ] 公网 `https://<BRIDGE_HOST>/yunxiao/codeup` 烟测 200
 - [ ] Secret 与主机 ingress 一致；请求头为 **X-Codeup-Token**
 - [ ] **先 smoke 再改远端** 已遵守
-- [ ] 真实 MR Hook 能进质量监管（非仅 smoke）
+- [ ] 真实 MR Hook 能进质量调度（非仅 smoke）
 
 ## 安全
 

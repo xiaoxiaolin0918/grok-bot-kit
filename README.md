@@ -1,65 +1,71 @@
-# zhiyi-bot-kit
+# Grok Bot Kit (`grok-bot-kit`)
 
-给同事迁移 / 初始化用的 **脱敏工具包**：说明 Grok Bot 日常协作里几条正式流程线的作用与实现，并提供引导式搭建步骤与角色模板。
+**English (short):** A sanitized, public-friendly toolkit for migrating and bootstrapping **Grok Bot** team workflows: steward + Feishu Q&A assistant + quality dispatcher + code review (+ optional dev CLI), plus an always-on **bridge host** (Linux / macOS / Windows) that receives Feishu WebSocket events and Git forge (Codeup/GitLab-compatible) webhooks. No secrets in git. MIT licensed. **Do not push** until you choose a public GitHub name.
 
-> **不是**完整复活仓镜像。不含个人巡检日志、不含真实密钥、**不含打印开发机器人**材料。
+**中文：** 给同事迁移 / 初始化用的 **Grok Bot 协作工具包**（脱敏、可公开）。说明几条正式流程线的作用与实现，并提供引导式搭建、角色模板与收口桥骨架。
 
-## 给谁
+> 不含个人巡检日志、不含真实密钥、**不含打印产线机器人**材料。不含公司真名、内网域名、真实 org/agent id。
 
-- 需要在新账号上搭齐「管家 + 飞书助手 + 质量监管 + 代码审查」（可选 zhiyi-cli）的同事
-- 需要理解「常开主机」（Linux / macOS / **Windows**）上双入口收口桥（飞书 WS / Codeup HTTP）的运维同学
+## Who it’s for / 给谁
 
-## 本仓有什么
+- 需要在新账号上搭齐「管家 + 飞书答疑 + 质量调度 + 代码审查」（可选 dev-cli）的同事
+- 需要在 **常开主机**（Linux / macOS / **Windows**）上跑双入口收口桥的运维同学
 
-| 路径 | 内容 |
-|------|------|
-| `docs/` | 流程线、架构、引导式初始化、验收清单、安全约定 |
-| `roles/` | 各角色 `AGENT.template.md` / `HANDOFF.template.md`（复制后按占位符填写） |
-| `mac-bridge/` | 可安装的收口桥骨架（目录名沿用历史；**可跑在 Linux / macOS / Windows 常开主机**；仅 example 配置） |
-| `scripts/init-guided.sh` | 打印引导步骤并检查本仓目录是否齐全（不索要密码） |
+## Layout
 
-## 正式对照角色（本 kit）
+| Path | Content |
+|------|---------|
+| `docs/` | Lines, architecture, guided setup, checklist, security |
+| `roles/` | `AGENT.template.md` / `HANDOFF.template.md` per role |
+| `mac-bridge/` | Runnable bridge skeleton (example config only) |
+| `scripts/init-guided.sh` | Print steps + verify tree (no passwords) |
+| `scripts/public-scan.sh` | Pre-publish scan: secrets, private IPs, emails |
+| `LICENSE` | MIT |
 
-| 角色模板目录 | 建议侧栏名 | 是否必装 |
-|--------------|------------|----------|
-| `roles/steward` | bot管家 | 必装（人工只建这一个） |
-| `roles/feishu-assistant` | 飞书助手 | 必装（飞书问答） |
-| `roles/quality` | 智衣质量监管 | 必装（Codeup/CR 调度） |
-| `roles/code-review` | 代码审查 | 必装（主审） |
-| `roles/zhiyi-cli` | zhiyi cli | 可选（后端 CLI 开发） |
+## Official roles in this kit
 
-**打印开发机器人不在本 kit。** 若业务需要打印线，请另册，勿并入本仓对照表。
+| Template dir | Suggested sidebar name | Required? |
+|--------------|------------------------|-----------|
+| `roles/steward` | bot管家 / Steward | Yes (human creates only this one) |
+| `roles/feishu-assistant` | 飞书答疑 / Feishu assistant | Yes |
+| `roles/quality` | 质量调度 / Quality | Yes (MR/CR dispatch) |
+| `roles/code-review` | 代码审查 / Code review | Yes |
+| `roles/dev-cli` | dev-cli | Optional |
 
-## 最快开始
+**Print / manufacturing bots are out of scope** for this kit.
 
-1. 读 [`docs/01-lines.md`](docs/01-lines.md) 与 [`docs/02-architecture.md`](docs/02-architecture.md)
-2. 按 [`docs/03-guided-setup.md`](docs/03-guided-setup.md) 逐步做；每步有「完成什么 / 怎么做 / 如何验收」
-3. 用 [`docs/04-checklist.md`](docs/04-checklist.md) 勾验收
-4. 密钥落点见 [`docs/05-security.md`](docs/05-security.md)
+## Quick start
 
-也可跑：
+1. Read [`docs/01-lines.md`](docs/01-lines.md) and [`docs/02-architecture.md`](docs/02-architecture.md)
+2. Follow [`docs/03-guided-setup.md`](docs/03-guided-setup.md)
+3. Check [`docs/04-checklist.md`](docs/04-checklist.md) and [`docs/05-security.md`](docs/05-security.md)
+4. Before any public push: `./scripts/public-scan.sh`
 
 ```bash
 ./scripts/init-guided.sh
+./scripts/public-scan.sh
 ```
 
-## 复活约定（摘要）
+## Conventions (summary)
 
-1. **人工只建管家**；其余由管家 `CreateAgent` 拉起并发送开工消息
-2. 巡检例程：每天 **09:06** / **21:06**（Asia/Shanghai，含周末）；缺漏/过旧才催，全齐沉默
-3. **收口桥**跑在一台 **常开主机（bridge host）** 上即可（**Linux / macOS / Windows**），**不要求**特定机型或仅 Unix
-4. **进程守护**：Linux→systemd；macOS→launchd；Windows→**NSSM** 或**任务计划程序**；见 `mac-bridge/README.md`
-5. **Codeup**：桥 + 公网可达 + smoke 通过后，再改远端 Webhook；Secret 头为 **`X-Codeup-Token`**（桥同时兼容 `X-Mac-Bridge-Secret` / `X-Gitlab-Token` / `?secret=`）
-6. 换号：通常只改主机上转发文件（飞书助手 / 质量监管的 webhook URL+Authorization），飞书 app 凭证可留主机
-7. 侧栏 agent id、Cursor `machineId` **以当前账号侧栏 / 已连接电脑为准**；模板只用占位。`machineId` **可选**——仅当该角色需要 Cursor 本机 Shell/Read 时再填
+1. **Human creates only the steward**; steward `CreateAgent`s the rest
+2. Patrol routine: **09:06** / **21:06** Asia/Shanghai (weekends included); silent when healthy
+3. **Bridge host** = always-on Linux / macOS / Windows (not tied to one vendor laptop)
+4. **Supervision:** Linux→systemd; macOS→launchd; Windows→**NSSM** or **Task Scheduler**
+5. **Git forge webhooks:** smoke first, then point remote URL at `https://<BRIDGE_HOST>/yunxiao/codeup` (path configurable). Secret header for Codeup-compatible forges: **`X-Codeup-Token`**
+6. Account switch: usually only rewrite local forwarder URL/auth files
+7. Sidebar agent ids and Cursor `machineId` are **optional placeholders** — never treat copied ids as global truth
 
-## 建议远端（待负责人确认）
+## Suggested public repo name
 
-空仓名建议：`sanzhi/private/zhiyi-bot-kit`（Codeup）。本仓首次 commit **默认不 push**，等确认远端后再挂。
+`grok-bot-kit` on GitHub (Public). **No remote configured; do not push until the owner names the org/user.**
 
-## 不做
+## Placeholders
 
-- 不暴露完整复活仓内容与历史
-- 不提交任何真实 Bearer / app_secret / ingress secret / frp token / 真实 webhook URL
-- 不把本 kit 当业务仓使用
-- 不暗示桥必须跑在 Mac mini 上，也不暗示仅支持 Unix
+`<ORG>`, `<BRIDGE_HOST>`, `<FEISHU_ASSISTANT_WEBHOOK>`, `<QUALITY_WEBHOOK>`, `<USER_NAME>`, `<MACHINE_ID>` (optional), `example.com`
+
+## Non-goals
+
+- No real Bearer / app_secret / ingress secret / frp token / webhook URLs in git
+- No company intranet hostnames, personal names, or internal agent ids
+- Not a business application monorepo

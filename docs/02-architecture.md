@@ -6,9 +6,9 @@
                     ┌──────────────────────────────────────┐
                     │  常开主机 bridge host（Linux/macOS/Windows） │
                     │                                      │
- 飞书开放平台 ─WS──►│  mac-bridge feishu WS                 │──POST──► 飞书助手例程
+ 飞书开放平台 ─WS──►│  mac-bridge feishu WS                 │──POST──► 飞书答疑例程
                     │                                      │
- Codeup ─HTTPS────►│  公网隧道/反代 → yunxiao :8787        │──POST──► 质量监管例程
+ Codeup ─HTTPS────►│  公网隧道/反代 → yunxiao :8787        │──POST──► 质量调度例程
                     │     (~/.config/mac-bridge 或等价)       │
                     └──────────────────────────────────────┘
                                       │
@@ -23,19 +23,19 @@
 
 | 组件 | 职责 |
 |------|------|
-| `mac-bridge/feishu` | 飞书 WS；过滤群 @；OnIt；转发飞书助手 |
-| `mac-bridge/yunxiao` | Codeup HTTP 收口；Secret 校验；转发质量监管 |
+| `mac-bridge/feishu` | 飞书 WS；过滤群 @；OnIt；转发飞书答疑 |
+| `mac-bridge/yunxiao` | Codeup HTTP 收口；Secret 校验；转发质量调度 |
 | 主机配置目录（默认 `~/.config/mac-bridge/`） | **唯一**密钥与 webhook 落点（勿进 git） |
 | 进程守护 | **Linux → systemd**；**macOS → launchd**；**Windows → NSSM 或任务计划程序** |
 | bot管家 | CreateAgent、巡检、桥健康旁视 |
-| 飞书助手 | 答飞书问题、代回 |
-| 质量监管 | CR 调度、Approve/merge 站规 |
+| 飞书答疑 | 答飞书问题、代回 |
+| 质量调度 | CR 调度、Approve/merge 站规 |
 | 代码审查 | 主审 C/I/M + 可合档 |
 
 ## 配置文件关系
 
 ```
-zhiyi-bot-kit/mac-bridge/config.example.json
+grok-bot-kit/mac-bridge/config.example.json
         │ cp
         ▼
 ~/.config/mac-bridge/config.json          ← 只含路径指针与 app_id 占位
@@ -49,7 +49,7 @@ zhiyi-bot-kit/mac-bridge/config.example.json
 ~/.config/mac-bridge/frpc.toml               ← 可选公网
 ```
 
-历史键名 `steward_webhook_*` 语义已是「飞书助手」；新部署可并列 `feishu_bot_webhook_*`（实现优先新键、回落旧键时以你采用的脚本为准）。
+历史键名 `steward_webhook_*` 语义已是「飞书答疑」；新部署可并列 `feishu_bot_webhook_*`（实现优先新键、回落旧键时以你采用的脚本为准）。
 
 ## 数据流细节
 
@@ -58,7 +58,7 @@ zhiyi-bot-kit/mac-bridge/config.example.json
 1. `im.message.receive_v1`
 2. 写入主机 inbox.jsonl（可选）
 3. 若应唤醒：并行 OnIt + POST webhook（不等 Cursor 响应体，避免堵 WS）
-4. 飞书助手例程跑起来后自行拉上下文并回复飞书
+4. 飞书答疑例程跑起来后自行拉上下文并回复飞书
 
 ### Codeup 入站
 

@@ -1,5 +1,5 @@
 {
-  "_comment": "复制为 ~/.config/mac-bridge/config.json。勿提交真实密钥。feishu.steward_webhook 语义=飞书助手唤醒（历史键名）。qa_ingest.script 改成你自己的路径或 disabled。",
+  "_comment": "Copy to ~/.config/mac-bridge/config.json. Never commit real secrets. steward_webhook means Feishu assistant wake URL (legacy key name).",
   "feishu": {
     "app_id": "cli_xxxxxxxx",
     "app_secret_file": "~/.config/mac-bridge/feishu_app_secret",
@@ -14,7 +14,7 @@
       "url_file": "~/.config/mac-bridge/steward_webhook_url",
       "auth_file": "~/.config/mac-bridge/steward_webhook_auth"
     },
-    "bot_name_re": "飞书助手|Grok Bot|bot管家",
+    "bot_name_re": "飞书答疑|Feishu|Grok Bot|bot管家|Steward",
     "follow_chat_ids": []
   },
   "yunxiao": {

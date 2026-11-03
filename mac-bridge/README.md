@@ -2,8 +2,8 @@
 
 目录名 `mac-bridge` 为历史命名。语义是 **bridge host 上的双入口收口**：
 
-1. **飞书**：常驻 WS 长连接 → 直达侧栏「飞书助手」webhook（不再经管家代答）
-2. **云效/Codeup**：本机 HTTP 收口 → 直转「智衣质量监管」webhook；管家只巡检是否在线
+1. **飞书**：常驻 WS 长连接 → 直达侧栏「飞书答疑」webhook（不再经管家代答）
+2. **云效/Codeup**：本机 HTTP 收口 → 直转「质量调度」webhook；管家只巡检是否在线
 
 **可跑在 Linux / macOS / Windows 常开主机**，不要求特定机型，**不是仅 Unix**。  
 运行时用 **Node ≥18** 执行同一套 `feishu` / `yunxiao` 脚本。密钥只落主机配置目录（默认 `~/.config/mac-bridge/` 或 Windows `%USERPROFILE%\.config\mac-bridge\`），禁止进仓。
@@ -14,7 +14,7 @@
 飞书开放平台 ──WS──► feishu/ws-long-connection.mjs
                          └─POST─► <FEISHU_ASSISTANT_WEBHOOK>
 
-Codeup ──HTTPS(<MAC_BRIDGE_HOST>)──► yunxiao/http-ingress.mjs
+Codeup ──HTTPS(<BRIDGE_HOST>)──► yunxiao/http-ingress.mjs
                          └─POST─► <QUALITY_WEBHOOK>
 ```
 
@@ -73,7 +73,7 @@ chmod 600 ~/.config/mac-bridge/*secret* ~/.config/mac-bridge/*auth* ~/.config/ma
 ## 安装依赖与前台调试（三端相同）
 
 ```bash
-cd /path/to/zhiyi-bot-kit/mac-bridge
+cd /path/to/grok-bot-kit/mac-bridge
 npm install --omit=dev
 npm run feishu    # WS
 npm run yunxiao   # HTTP 127.0.0.1:8787
@@ -93,10 +93,10 @@ yunxiao 默认只听 `127.0.0.1:8787`。任选：
 
 ## Codeup 改挂清单
 
-1. URL：`https://<MAC_BRIDGE_HOST>/yunxiao/codeup`
+1. URL：`https://<BRIDGE_HOST>/yunxiao/codeup`
 2. Secret Token = `yunxiao_ingress_secret`
 3. 点测试；看主机日志与质量例程
-4. 换号通常只改飞书助手 / quality 转发文件
+4. 换号通常只改飞书答疑 / quality 转发文件
 
 ## 不做
 

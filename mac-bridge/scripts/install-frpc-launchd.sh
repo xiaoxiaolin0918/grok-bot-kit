@@ -5,7 +5,7 @@ CFG_DIR="${HOME}/.config/mac-bridge"
 LAUNCH_DIR="${HOME}/Library/LaunchAgents"
 FRPC="${FRPC_BIN:-${HOME}/.local/bin/frpc}"
 TOML="${CFG_DIR}/frpc.toml"
-name=com.zhiyi.mac-bridge.frpc
+name=com.example.grok-bridge.frpc
 mkdir -p "$CFG_DIR/logs" "$LAUNCH_DIR"
 if [[ ! -x "$FRPC" ]]; then echo "缺少 $FRPC"; exit 1; fi
 if [[ ! -f "$TOML" ]]; then echo "缺少 $TOML；cp $BRIDGE/frp/frpc.example.toml $TOML"; exit 1; fi

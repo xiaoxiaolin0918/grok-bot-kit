@@ -19,10 +19,10 @@
 | 目录（示例） | 侧栏名 | 备注 |
 |--------------|--------|------|
 | steward | bot管家 | 复活点 |
-| feishu-assistant | 飞书助手 | 飞书问答 |
-| quality | 智衣质量监管 | Codeup/CR 调度 |
+| feishu-assistant | 飞书答疑 | 飞书问答 |
+| quality | 质量调度 | Codeup/CR 调度 |
 | code-review | 代码审查 | 主审 |
-| zhiyi-cli | zhiyi cli | 可选 |
+| dev-cli | dev-cli | 可选 |
 
 **打印线不在本对照表。** 侧栏 agent id **以当前侧栏为准**，勿固化他人 id。
 
@@ -39,8 +39,8 @@
 
 1. 旧账号 push 交接材料（若有私有仓）
 2. 新账号只建管家 → 管家拉其余角色
-3. bridge host 上只改飞书助手 / 质量监管转发 url+auth
-4. Codeup URL 若 `<MAC_BRIDGE_HOST>` 未变可不动；Secret 轮换则同步改
+3. bridge host 上只改飞书答疑 / 质量调度转发 url+auth
+4. Codeup URL 若 `<BRIDGE_HOST>` 未变可不动；Secret 轮换则同步改
 
 ## 进行中
 

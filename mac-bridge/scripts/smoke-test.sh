@@ -48,7 +48,7 @@ curl -sS "${HDR[@]}" -H 'content-type: application/json' \
   "http://${HOST}:${PORT}${PATH_Y}"
 echo
 echo "== 飞书 =="
-echo "对 bot 私聊一句 → 飞书助手例程应 run；看 logs/feishu.*.log"
+echo "对 bot 私聊一句 → 飞书答疑例程应 run；看 logs/feishu.*.log"
 echo "== 配置检查（不打印密钥内容） =="
 python3 - <<'PY'
 from pathlib import Path

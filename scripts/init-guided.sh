@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-echo "=== zhiyi-bot-kit 引导检查 ==="
+echo "=== grok-bot-kit 引导检查 ==="
 echo "根目录: $ROOT"
 echo
 
@@ -23,8 +23,8 @@ need=(
   roles/quality/HANDOFF.template.md
   roles/code-review/AGENT.template.md
   roles/code-review/HANDOFF.template.md
-  roles/zhiyi-cli/AGENT.template.md
-  roles/zhiyi-cli/HANDOFF.template.md
+  roles/dev-cli/AGENT.template.md
+  roles/dev-cli/HANDOFF.template.md
   mac-bridge/README.md
   mac-bridge/config.example.json
   mac-bridge/feishu/ws-long-connection.mjs
@@ -57,7 +57,7 @@ if [[ $miss -gt 0 ]]; then
 fi
 
 # 粗检：不应出现打印包目录
-if [[ -d roles/zhiyi-print || -d zhiyi-print ]]; then
+if [[ -d roles/zhiyi-print || -d zhiyi-print || -d roles/print ]]; then
   echo "警告：发现打印相关目录，本 kit 应排除打印。"
   exit 2
 fi
@@ -67,10 +67,10 @@ echo
 echo "下一步（详见 docs/03-guided-setup.md）："
 echo "  0) 选定常开 bridge host（Linux/macOS/Windows）与占位符"
 echo "  1) 只建管家（roles/steward）"
-echo "  2) 管家 CreateAgent：飞书助手 → 质量 → 代码审查 →（可选）zhiyi-cli"
+echo "  2) 管家 CreateAgent：飞书答疑 → 质量 → 代码审查 →（可选）dev-cli"
 echo "  3) 巡检例程 09:06 / 21:06 Asia/Shanghai"
 echo "  4) 在 bridge host 安装 mac-bridge（systemd / launchd / NSSM或任务计划）"
-echo "  5) 挂飞书助手 webhook"
+echo "  5) 挂飞书答疑 webhook"
 echo "  6) 挂质量 webhook + 公网 smoke（头 X-Codeup-Token）"
 echo "  7) 最后才改 Codeup 远端"
 echo "  8) （可选）换号只改转发文件"

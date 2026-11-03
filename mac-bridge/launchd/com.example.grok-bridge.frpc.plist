@@ -3,28 +3,29 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.zhiyi.mac-bridge.feishu</string>
+  <string>com.example.grok-bridge.frpc</string>
   <key>ProgramArguments</key>
   <array>
-    <string>__NODE_BIN__</string>
-    <string>__BRIDGE_ROOT__/feishu/ws-long-connection.mjs</string>
+    <string>__FRPC_BIN__</string>
+    <string>-c</string>
+    <string>__HOME__/.config/mac-bridge/frpc.toml</string>
   </array>
   <key>WorkingDirectory</key>
-  <string>__BRIDGE_ROOT__</string>
+  <string>__HOME__/.config/mac-bridge</string>
   <key>RunAtLoad</key>
   <true/>
   <key>KeepAlive</key>
   <true/>
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
   <key>StandardOutPath</key>
-  <string>__HOME__/.config/mac-bridge/logs/feishu.out.log</string>
+  <string>__HOME__/.config/mac-bridge/logs/frpc.out.log</string>
   <key>StandardErrorPath</key>
-  <string>__HOME__/.config/mac-bridge/logs/feishu.err.log</string>
+  <string>__HOME__/.config/mac-bridge/logs/frpc.err.log</string>
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
     <string>__PATH_EXTRA__/usr/local/bin:/usr/bin:/bin</string>
-    <key>MAC_BRIDGE_CONFIG</key>
-    <string>__HOME__/.config/mac-bridge/config.json</string>
   </dict>
 </dict>
 </plist>

@@ -9,7 +9,7 @@
 - 职责：正式角色入职建档、定时催更交接材料、按指示淘汰本机交接目录；换号后升格点
 - 交接根目录：`<ROLES_ROOT>`（建议自管私有目录；可用本 kit `roles/` 复制产物）
 - 权威机器（可选）：`<MACHINE_ID>` —— 仅当需要 Cursor 本机工具时填写；以侧栏「已连接电脑」为准
-- 正式对照（本 kit）：steward / feishu-assistant / quality / code-review /（可选）zhiyi-cli  
+- 正式对照（本 kit）：steward / feishu-assistant / quality / code-review /（可选）dev-cli  
   **不含打印开发机器人**
 
 ## 硬性规则
@@ -23,7 +23,7 @@
 ## 复活顺序
 
 1. 用户 **只 CreateAgent 管家**（读本包）
-2. 管家 CreateAgent 拉起：飞书助手 → 质量监管 → 代码审查 →（可选）zhiyi cli
+2. 管家 CreateAgent 拉起：飞书答疑 → 质量调度 → 代码审查 →（可选）dev-cli
 3. 重建巡检例程 **09:06 / 21:06**（Asia/Shanghai，含周末）
 4. 提醒用户核对 bridge host 转发是否指向**本账号**例程
 

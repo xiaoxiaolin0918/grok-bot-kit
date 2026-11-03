@@ -2,7 +2,7 @@
 
 本 kit **不含打印线**。正式线如下。
 
-占位约定：`<ORG>`、`<MAC_BRIDGE_HOST>`（常开主机对外域名或 IP）、`<FEISHU_ASSISTANT_WEBHOOK>`、`<QUALITY_WEBHOOK>`、`<MACHINE_ID>`（可选）。
+占位约定：`<ORG>`、`<BRIDGE_HOST>`（常开主机对外域名或 IP）、`<FEISHU_ASSISTANT_WEBHOOK>`、`<QUALITY_WEBHOOK>`、`<MACHINE_ID>`（可选）。
 
 ---
 
@@ -23,10 +23,10 @@
 
 ---
 
-## 2. 飞书实施答疑（飞书助手 + 收口桥）
+## 2. 飞书实施答疑（飞书答疑 + 收口桥）
 
 **作用**  
-飞书私聊 / 群聊 @bot 的实施与查数问题，由专用「飞书助手」回答；换号时不必重挂飞书开放平台应用。
+飞书私聊 / 群聊 @bot 的实施与查数问题，由专用「飞书答疑」回答；换号时不必重挂飞书开放平台应用。
 
 **实现逻辑**
 
@@ -39,7 +39,7 @@
 
 1. 在 **常开主机**（Linux / macOS / Windows）上跑 WS 长连接；进程守护见下表。
 2. **私聊一律唤醒**；**群聊仅真正 @bot**（按 bot open_id / 名称正则），未 @ 不唤醒。
-3. 转发目标是「飞书助手」例程 webhook，**不再经管家代答**（管家只巡检桥是否在线）。
+3. 转发目标是「飞书答疑」例程 webhook，**不再经管家代答**（管家只巡检桥是否在线）。
 4. 可选：异步 ingest 到主机 FAQ sqlite（路径自配；本 kit 不捆绑完整 feishu-qa 仓）。
 5. 代回：助手用飞书开放 API / 自备脚本引用回复；长排查可开话题。
 
@@ -57,33 +57,33 @@ Node 进程本身跨平台：`npm run feishu` / `npm run yunxiao`。公网仍用
 
 ---
 
-## 3. Codeup 合入 / CR（质量监管 + 代码审查 + 收口桥）
+## 3. Codeup 合入 / CR（质量调度 + 代码审查 + 收口桥）
 
 **作用**  
-Codeup Merge Request / CR 事件自动进「质量监管」调度，再分派「代码审查」或临时审角；质量侧负责 Approve /（按站规）merge。
+Codeup Merge Request / CR 事件自动进「质量调度」调度，再分派「代码审查」或临时审角；质量侧负责 Approve /（按站规）merge。
 
 **实现逻辑**
 
 ```
-Codeup ──HTTPS(<MAC_BRIDGE_HOST>)──► bridge-host: yunxiao/http-ingress.mjs
+Codeup ──HTTPS(<BRIDGE_HOST>)──► bridge-host: yunxiao/http-ingress.mjs
                                          │  校验 Secret（见下）
                                          └─POST─► <QUALITY_WEBHOOK>
 ```
 
 1. 主机 HTTP 默认 `127.0.0.1:8787`，路径 `/yunxiao/codeup`。
-2. 公网：frp / cloudflared / ngrok / 现有反代 → `<MAC_BRIDGE_HOST>/yunxiao/codeup`。
+2. 公网：frp / cloudflared / ngrok / 现有反代 → `<BRIDGE_HOST>/yunxiao/codeup`。
 3. **Secret**：Codeup「Secret Token」发在请求头 **`X-Codeup-Token`**。桥同时接受 `X-Mac-Bridge-Secret`、`X-Gitlab-Token`、`?secret=`。
-4. 校验通过后转质量监管 webhook；对 Codeup 本地接受后回 200，避免重试堆积。
-5. 质量监管：解析仓/CR/tip → 分派主审 → 汇总结论 → **Approve 与能否 merge 分开**（站规写在质量/审查模板）。
+4. 校验通过后转质量调度 webhook；对 Codeup 本地接受后回 200，避免重试堆积。
+5. 质量调度：解析仓/CR/tip → 分派主审 → 汇总结论 → **Approve 与能否 merge 分开**（站规写在质量/审查模板）。
 
 **改远端时机（硬）**：公网可达 + `scripts/smoke-test.sh` 成功 + 质量例程能看到唤醒 → **再**改 Codeup Webhook。未就绪前勿改。
 
 ---
 
-## 4. zhiyi-cli（可选开发主战场）
+## 4. dev-cli（可选开发主战场）
 
 **作用**  
-智衣后端 CLI（`zhiyi-cli`）任务驱动开发：查数、运维命令、补 CLI 缺口。
+团队后端 CLI（`dev-cli`）任务驱动开发：查数、运维命令、补 CLI 缺口。
 
 **实现逻辑（摘要）**
 

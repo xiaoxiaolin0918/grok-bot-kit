@@ -2,7 +2,7 @@
 /**
  * 飞书 WS 长连接入口（收口桥 · 飞书）
  * - 凭证/配置读本机 ~/.config/mac-bridge/（或 MAC_BRIDGE_CONFIG）
- * - 私聊或群聊真正 @bot → OnIt 占坑，并 POST 飞书助手唤醒 webhook（config 键 steward_webhook）
+ * - 私聊或群聊真正 @bot → OnIt 占坑，并 POST 飞书答疑唤醒 webhook（config 键 steward_webhook）
  * - 群聊未 @ 不唤醒
  * - 可选异步 ingest（config.qa_ingest）
  * 可跑在 Linux / macOS / Windows 常开主机。
@@ -32,7 +32,7 @@ try {
   }
 } catch {}
 
-const BOT_NAME_RE = new RegExp(feishu.bot_name_re || '飞书助手|Grok Bot|bot管家');
+const BOT_NAME_RE = new RegExp(feishu.bot_name_re || '飞书答疑|Feishu|Grok Bot|bot管家|Steward');
 
 // 可选：仅作记录；唤醒以真正 @bot / 私聊为准。勿在仓内写真实群 ID。
 const FOLLOW_CHAT_IDS = new Set((feishu.follow_chat_ids || []).filter(Boolean));
