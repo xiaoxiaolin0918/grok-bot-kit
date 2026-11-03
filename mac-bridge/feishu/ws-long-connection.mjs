@@ -5,7 +5,7 @@
  * - 私聊或群聊真正 @bot → OnIt 占坑，并 POST 飞书助手唤醒 webhook（config 键 steward_webhook）
  * - 群聊未 @ 不唤醒
  * - 可选异步 ingest（config.qa_ingest）
- * 可跑在 Linux 或 macOS 常开主机。
+ * 可跑在 Linux / macOS / Windows 常开主机。
  */
 import fs from 'fs';
 import path from 'path';
